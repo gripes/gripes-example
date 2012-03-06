@@ -8,8 +8,7 @@
 5. First entity class: `./gradlew create -Pmodel=Page`
 6. Edit the entity, adding properties (i.e. String name, description)
 7. Create actions: `./gradlew create -Paction=Page`
-8. Run the app: `./gradlew run`
-9. Browse: http://localhost:8888/gripes
 
 ### Running
-10. `./gradlew run`
+9. `./gradlew run`
+10. Browse: http://localhost:8888/gripes
