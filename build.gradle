@@ -4,20 +4,31 @@ apply {
  	plugin 'gripes'
 }
 
-if(file("conf/gripes-basic.gradle").exists()) apply from: "conf/gripes-basic.gradle"
+if(file("conf/gripes-basic.gradle").exists()) 
+  apply from: "conf/gripes-basic.gradle"
+
+gripes {
+  packageBase = "org.uwhealth"
+}
 
 buildscript {
-	versions = [
-		'gripes-web' : '0.1.9',
-		'gripes-plugin' : '0.1.10',
-		'gripersist' : '0.1.6',
-		'gripes-ast' : '0.1.0',
-		'hibernate-core' : '4.0.0.Beta2',
-		'tomcat' : '6.0.35'
-	]
-
+  versions = [
+  	'gripes-web' : '0.1.9',
+  	'gripes-plugin' : '0.1.10',
+  	'gripersist' : '0.1.6',
+  	'gripes-ast' : '0.1.0',
+  	'hibernate-core' : '4.0.0.Beta2',
+/*    'tomcat' : '6.0.35'*/
+  ]
+  
 	repositories {
 		mavenCentral()
+		
+    add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+      name = 'GitHub'
+      addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+    }
+		
 		mavenRepo url: "http://www.gripes-project.org/libs"
 		mavenRepo name: "jboss-snapshots", url: "http://snapshots.jboss.org/maven2/"
 		mavenRepo name: "jboss-public", url: "https://repository.jboss.org/nexus/content/groups/public/"
@@ -25,11 +36,12 @@ buildscript {
 	}
 
 	dependencies {
-    classpath("gripes:gripes-plugin:${versions['gripes-plugin']}")
+    classpath("gripes:gripes-plugin:${versions['gripes-plugin']}")    
+/*    classpath 'bmuschko:gradle-tomcat-plugin:0.9'*/
 		classpath group: 'org.hibernate', name: 'hibernate-core', version: versions['hibernate-core']
 		classpath group: 'org.hibernate', name: 'hibernate-entitymanager', version: versions['hibernate-core']
 	}
-}  
+}
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '1.0-milestone-7'
