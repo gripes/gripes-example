@@ -25,8 +25,9 @@ apply {
   plugin 'gripes'
 }
 
-if(file("conf/gripes-basic.gradle").exists()) 
+if(file("conf/gripes-basic.gradle").exists()) {
   apply from: "conf/gripes-basic.gradle"
+}
 
 task wrapper(type: Wrapper) {
   gradleVersion = '1.0-milestone-8'
