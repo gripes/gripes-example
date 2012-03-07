@@ -1,18 +1,20 @@
-versions = [
-  'gripes-web' : '0.1.9',
-  'gripes-plugin' : '0.1.13',
-  'gripersist' : '0.1.6',
-  'gripes-ast' : '0.1.0',
-  'hibernate-core' : '4.0.0.Beta2'
-]
-
 buildscript {  
+  versions = [
+    'gripes-web' : '0.1.9',
+    'gripes-plugin' : '0.1.13',
+    'gripersist' : '0.1.6',
+    'gripes-ast' : '0.1.0',
+    'hibernate-core' : '4.0.0.Beta2'
+  ]
+  
   repositories {
     mavenCentral()
     mavenRepo url: "http://www.gripes-project.org/libs"
   }
 
   dependencies {
+    classpath group: 'org.hibernate', name: 'hibernate-core', version: versions['hibernate-core']
+    classpath group: 'org.hibernate', name: 'hibernate-entitymanager', version: versions['hibernate-core']
     classpath group: 'gripes', name: 'gripes-plugin', version: '0.1.13' //"${versions['gripes-plugin']}")
   }
 }
