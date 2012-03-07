@@ -7,25 +7,25 @@ versions = [
 ]
 
 buildscript {  
-	repositories {
-		mavenCentral()
-		mavenRepo url: "http://www.gripes-project.org/libs"
-	}
+  repositories {
+    mavenCentral()
+    mavenRepo url: "http://www.gripes-project.org/libs"
+  }
 
-	dependencies {
+  dependencies {
     classpath group: 'gripes', name: 'gripes-plugin', version: '0.1.13' //"${versions['gripes-plugin']}")
-	}
+  }
 }
 
 apply {
-	plugin 'groovy'
-	plugin 'war'
- 	plugin 'gripes'
+  plugin 'groovy'
+  plugin 'war'
+  plugin 'gripes'
 }
 
 if(file("conf/gripes-basic.gradle").exists()) 
   apply from: "conf/gripes-basic.gradle"
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '1.0-milestone-7'
+  gradleVersion = '1.0-milestone-7'
 }
